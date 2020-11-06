@@ -15,39 +15,17 @@ const Prompt = require("inquirer/lib/prompts/base");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 // array of questions for user
+// Create an array to store all the team members the user creates. 
 const teamMembers = [
-    // manager
-    // engineer
-    // intern
+    // manager gets stored ?
+    // engineer gets stored
+    // intern gets stored
 ];
 
-function addMember() {
-    inquirer.prompt([
-        {
-            type: "list",
-            name: "type",
-            message: "Which type of member would you like to add?",
-            choices: [
-                "Engineer",
-                "Intern",
-                "No new team members"
-            ]
-        }
-    ])
-    .then(answer => {
-        if(answer.type === "Engineer"){
-            createEngineer();
-        } else if (answer.type === "Intern"){
-            createIntern();
-        } else {
-            // ????
-        }
-    })
-}
-
+// The manager is the first one to start the team, so start with the manager.
 function createManager(){
     inquirer.prompt([
-        // Questions go here
+        // set up the manager by asking questions
         {
             type: "input",
             name: "name",
@@ -70,7 +48,9 @@ function createManager(){
         }
     ])
     .then(answers => {
+        // Then we create a new constant of Manager and call the Manager class passing the answers.
         const manager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.office));
+        // Then we start adding team members
         addMember();
     })
     .catch(error => {
@@ -82,6 +62,32 @@ function createManager(){
     })
 } 
 
+// The prompt asks to start creating a team and asks which team member you would like to add. 
+function addMember() {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "type",
+            message: "Which type of member would you like to add?",
+            choices: [
+                "Engineer",
+                "Intern",
+                "No new team members"
+            ]
+        }
+    ])
+    .then(answer => {
+        if(answer.type === "Engineer"){
+            createEngineer();
+        } else if (answer.type === "Intern"){
+            createIntern();
+        } else {
+            // If they don't want any new team members we probably need to create the HTML page with the team.
+        }
+    })
+}
+
+// Create an engineer
 function createEngineer () {
     inquirer.prompt([
         {
@@ -105,8 +111,11 @@ function createEngineer () {
             message: "Please enter Engineer's github ID"
         }
     ]).then(answers => {
+        // create a new const of engineer and use the Engineer class
         const engineer = new Engineer(answers.name, parseInt(answers.id), answers.email, answers.github);
+        // add the new engineer into the array
         teamMembers.push(engineer);
+        // go back and ask if they want new team members
         addMember();
     })
 }
@@ -130,12 +139,12 @@ function createIntern () {
         },
         {
             type: "input",
-            name: "education",
+            name: "school",
             message: "Please enter Intern's College or School"
         }
     ]).then(answers => {
-        const intern = new Intern(answers.name, parseInt(answers.id), answers.email, answers.education);
-        teamMembers.push(engineer);
+        const intern = new Intern(answers.name, parseInt(answers.id), answers.email, answers.school);
+        teamMembers.push(intern);
         addMember();
     })
 }

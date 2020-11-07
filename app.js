@@ -51,14 +51,8 @@ function createManager(){
         // Then we create a new constant of Manager and call the Manager class passing the answers.
         const manager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.office));
         // Then we start adding team members
+        teamMembers.push(manager);
         addMember();
-    })
-    .catch(error => {
-        if(error.isTtyError){
-            // Prompt couldn't be rendered
-        } else {
-            // something else went wrong
-        }
     })
 } 
 
@@ -82,7 +76,12 @@ function addMember() {
         } else if (answer.type === "Intern"){
             createIntern();
         } else {
-            // If they don't want any new team members we probably need to create the HTML page with the team.
+            const htmlCard = render(teamMembers)
+            fs.writeFile(outputPath, htmlCard, function(error){
+                if (error) throw error;
+                console.log('success');
+            })
+            // If they don't want any new team members we probably need to create the HTML page with the team. I have no idea how.
         }
     })
 }

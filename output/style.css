@@ -13,6 +13,8 @@ body {
     margin-top: 60px;
 }
 
+
+
 .card {
     margin:10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
@@ -25,6 +27,12 @@ body {
 h1 {
     font-size: 3.4em;
 }
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+}
 .card-title {
     text-align: center;
 }
@@ -34,3 +42,5 @@ h2 {
 h3 {
     font-size: 1.2em;
 }
+
+

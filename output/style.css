@@ -1,4 +1,36 @@
-
 body {
-    background-color: bisque;
+    background-color: rgb(2, 45, 68);
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.mainheading {
+    background-image: url("../images/Zion_National_Park_Cliffs.2e16d0ba.fill-1440x605.jpg");
+    background-color: darkcyan;
+    height: 200px;
+}
+.text-center {
+    color: azure;
+    margin-top: 60px;
+}
+
+.card {
+    margin:10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0,0,0,.5);
+}
+.card-header {
+    background-color: rgb(186, 221, 240);
+}
+
+h1 {
+    font-size: 3.4em;
+}
+.card-title {
+    text-align: center;
+}
+h2 {
+    font-size: 1.5em;
+}
+h3 {
+    font-size: 1.2em;
 }
